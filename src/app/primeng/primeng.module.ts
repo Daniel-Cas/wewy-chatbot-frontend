@@ -5,6 +5,8 @@ import { ButtonModule } from "primeng/button";
 import { RippleModule } from "primeng/ripple";
 import { InputTextModule } from "primeng/inputtext";
 import { CheckboxModule } from "primeng/checkbox";
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+
 
 
 
@@ -20,7 +22,8 @@ import { CheckboxModule } from "primeng/checkbox";
     ButtonModule,
     RippleModule,
     InputTextModule,
-    CheckboxModule
+    CheckboxModule,
+    ScrollPanelModule
   ]
 
 })
