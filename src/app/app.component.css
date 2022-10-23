@@ -21,3 +21,33 @@ section{
   margin: 5px 5px 5px 5px;
   text-align: center;
 }
+
+.local {
+  padding: 20px;
+  border-radius: 20px;
+  background-color: darkcyan;
+  max-width: 80%;
+  color: white;
+  font-size: 20px;
+  align-self: flex-start;
+}
+
+.remote {
+  padding: 20px;
+  border-radius: 20px;
+  background-color: darkkhaki;
+  max-width: 80%;
+  color: white;
+  font-size: 20px;
+  align-self: flex-end;
+}
+
+.container {
+  padding: 30px;
+  width: 100%;
+  height: max-content;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}

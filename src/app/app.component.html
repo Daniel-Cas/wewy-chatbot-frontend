@@ -23,11 +23,27 @@
   <br>
   <br>
   <div class="col-12 md:col-4 mt-10 pt-10">
-    <p-scrollPanel [style]="{width: '100%', height: '700px'}" class="mt-10" styleClass="custombar1">
-      <p>
-        {{ showMessage.message | json  }}
+    <div class="container">
+
+      <p id="message" [ngClass]="{'local': message.messageType == 'INPUT', 'remote': message.messageType == 'OUTPUT'}"
+         *ngFor="let message of chats" style="justify-content: center">
+
+        <img
+          style="align-self: flex-start; width: 30px;height: 30px; border-radius: 20px"
+          src="/assets/images/user_generic.png"
+          alt=""
+          *ngIf="message.messageType == 'INPUT'" >
+
+        {{ message.message }}
+        <img
+          style="align-self: flex-end; width: 30px;height: 30px; border-radius: 25px"
+          src="/assets/images/wewy.png"
+          alt=""
+          *ngIf="message.messageType == 'OUTPUT'" >
+
       </p>
-    </p-scrollPanel>
+
+    </div>
   </div>
 
 </section>

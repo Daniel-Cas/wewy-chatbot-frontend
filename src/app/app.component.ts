@@ -1,15 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {WebSocketService} from "./services/web-socket.service";
-import {connect, map, tap} from "rxjs";
-import {catchError} from "rxjs/operators";
 import {webSocket} from "rxjs/webSocket";
+import {Message} from "./interfaces/message";
 
-const subject = webSocket("ws://localhost:8000/test");
 
 
-interface Message {
-  message?: String | unknown;
-}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,11 +12,12 @@ interface Message {
 })
 export class AppComponent implements OnInit{
   title = 'wewy-chatbot';
-  showMessage: Message = {};
   message: String = '';
   data: String = '';
+  chats: Message[] = []
+  subject = webSocket("ws://localhost:8000/test");
 
-  constructor(protected socketService: WebSocketService) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -29,14 +25,23 @@ export class AppComponent implements OnInit{
   }
 
   sendInfo(message: String): void {
-    subject.next({message: message});
+    let auxMessage: Message = {
+      message: message,
+      messageType: 'INPUT'
+    }
+    this.chats.push(auxMessage)
+    this.subject.next({message: message});
   }
 
   listenInfo(){
-    subject.subscribe(
+    this.subject.subscribe(
       msg => {
         console.log('Message received: ' + msg)
-        this.showMessage.message = msg;
+        let auxMessage: Message = {
+          message: msg,
+          messageType: 'OUTPUT'
+        }
+        this.chats.push(auxMessage)
       },
       err => console.error(err),
       () => console.info('Complete')
