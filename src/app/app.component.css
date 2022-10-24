@@ -4,6 +4,7 @@ body{
   position: absolute;
   margin: 5px 5px 5px 5px;
   alignment: center;
+  overflow-x:scroll;
 }
 html{
   align-items: center;
@@ -30,6 +31,7 @@ section{
   color: white;
   font-size: 20px;
   align-self: flex-start;
+  text-align: center;
 }
 
 .remote {
@@ -45,7 +47,7 @@ section{
 .container {
   padding: 30px;
   width: 100%;
-  height: max-content;
+  height: auto;
   min-width: 100%;
   display: flex;
   flex-direction: column;
