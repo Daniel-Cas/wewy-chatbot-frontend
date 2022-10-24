@@ -5,27 +5,45 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Wewy</title>
 </head>
 <body style="width: 95%; height: 95%" >
 
 <section class="card" >
 
 
-  <div class="col-12 md:col-4 mb-10" >
+  <div class="col-12 md:col-4 mb-10 p-card-title"  >
     <h1 style="text-align: center">Wewy</h1>
     <span class="p-input-icon-right">
     <i class="pi pi-spin pi-spinner"></i>
-    <input id="input" type="text" class="p-inputtext-lg" placeholder="¿Que sucede?, cuentame..." style="width: 500px" pInputText />
-      <button pButton pRipple icon="pi pi-arrow-right" type="text" class="p-button-lg" for="input"> </button>
+    <input [(ngModel)]="message" id="input" type="text" class="p-inputtext-lg" placeholder="¿Que sucede?, cuentame..." style="width: 500px" pInputText />
+      <button pButton pRipple icon="pi pi-arrow-right" type="submit" class="p-button-lg" for="input"  (click)="sendInfo(message)" > </button>
     </span>
   </div>
   <br>
   <br>
   <div class="col-12 md:col-4 mt-10 pt-10">
-    <p-scrollPanel [style]="{width: '100%', height: '700px'}" class="mt-10" styleClass="custombar1">
+    <div class="container">
 
-    </p-scrollPanel>
+      <p id="message" [ngClass]="{'local': message.messageType == 'INPUT', 'remote': message.messageType == 'OUTPUT'}"
+         *ngFor="let message of chats" style="justify-content: center">
+
+        <img
+          style="align-self: flex-start; width: 30px;height: 30px; border-radius: 20px"
+          src="/assets/images/user_default.png"
+          alt=""
+          *ngIf="message.messageType == 'INPUT'" >
+
+        {{ message.message }}
+        <img
+          style="align-self: flex-end; width: 30px;height: 30px; border-radius: 25px"
+          src="/assets/images/wewy.png"
+          alt=""
+          *ngIf="message.messageType == 'OUTPUT'" >
+
+      </p>
+
+    </div>
   </div>
 
 </section>
